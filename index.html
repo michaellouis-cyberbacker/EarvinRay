@@ -1,337 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-  // Redirect to mobile version if on phone/tablet
-  document.addEventListener("DOMContentLoaded", function () {
-    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      window.location.href = "mobile.html"; // 👉 change to your mobile version filename
-    }
-  });
-</script>
-  
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>APRE</title>
-  <style>
-    :root{
-      --collapsed-w:70px;      /* sidebar width when collapsed */
-      --expanded-w:280px;      /* sidebar width when expanded */
-      --icon-size:32px;
-      --logo-size:56px;
-      --bg:#111;
-      --hl:#fff;
-      --txt:#fff;
-      --txt-inv:#000;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earvin Ray | Five-Star Client Review Program</title>
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Earvin Ray | Five-Star Client Review Program">
+  <meta property="og:description" content="Your feedback helps others know what it’s like to work with Earvin Ray. Leave a review and get rewarded!">
+  <meta property="og:image" content="Images/DP">
+  <meta property="og:url" content="https://earvinray.netlify.app">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Earvin Ray | Five-Star Client Review Program">
+  <meta name="twitter:description" content="Your feedback helps others know what it’s like to work with Earvin Ray. Leave a review and get rewarded!">
+  <meta name="twitter:image" content="Images/DP.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P581CEDL2M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P581CEDL2M');
+  </script>
+
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Earvin Ray - Client Review Program</title>
+
+<!-- Fonts: Inter + Lora -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:wght@700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --beige:#c19a6b;
+    --beige-soft:#f1e8dc;
+    --ink:#000;
+    --text:#444;
+  }
+
+  body{
+    font-family:'Inter', sans-serif;
+    margin:0; padding:0; text-align:center; background:#fff; position:relative; min-height:100vh;
+  }
+
+  body::after{
+    content:""; position:fixed; bottom:0; left:0; width:100%; height:48%;
+    background: radial-gradient(60% 60% at 50% 100%, rgba(193,154,107,0.60) 0%, rgba(193,154,107,0.30) 35%, rgba(193,154,107,0) 70%);
+    filter: blur(42px); pointer-events:none; z-index:-1;
+  }
+
+  .container{ max-width:600px; margin:auto; padding:20px; }
+  img.profile{
+    width:140px; height:140px; border-radius:50%; object-fit:cover; border:4px solid var(--beige); margin-bottom:15px;
+  }
+
+  h1{
+    font-family:'Lora', serif;
+    font-weight:700;
+    font-size:2rem;
+    color:var(--ink);
+    margin:0 0 10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+    .highlight {
+      font-weight: bold;
+      color: #c19a6b;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height:100%; }
-    body {
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#fff;
-      overflow-x:hidden;
-    }
+  p.description{ font-size:1rem; color:var(--text); line-height:1.55; margin:0 auto 10px; }
 
-    .page { height:100vh; }
+    .reviews {
+      background: #f9f7f5;
+      border-left: 4px solid #c19a6b;
+      padding: 15px;
+      margin-top: 25px;
+    }
+    .reviews p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 15px;
+    }
+    .reviews strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #000;
+    }
+    .review-author {
+      font-style: italic;
+      color: #555;
+  }
 
-    /* =========================
-       Sidebar
-       ========================= */
-    .sidebar{
-      position:fixed; inset:0 auto 0 0;
-      width:var(--collapsed-w);
-      background:var(--bg);
-      color:var(--txt);
-      display:flex; flex-direction:column;
-      padding-top:12px;
-      transition:width .28s ease;
-      z-index:250;
+  .btn{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    margin:12px auto; padding:16px; width:90%; max-width:400px;
+    text-decoration:none; border-radius:8px; font-size:1.1em; font-weight:500;
+    background-color:var(--beige); color:#000; box-sizing:border-box;
+    transition:transform .1s ease-in-out, opacity .2s;
+  }
+  .btn img{ height:24px; width:auto; }
+  .btn:hover{ opacity:.85; transform:scale(1.02); }
 
-      /* grid-driven nav row layout */
-      --label-col: 0fr;                /* collapsed: label column takes no space */
-    }
-    .sidebar.expanded{
-      width:var(--expanded-w);
-      --label-col: 1fr;                /* expanded: label column appears */
-    }
+  .btn.black-btn{
+    background:#000;
+    padding:12px;
+  }
+  .btn.black-btn img{ height:30px; }
 
-    .sidebar ul{
-      list-style:none; margin:0; padding:0;
-      display:flex; flex-direction:column;
-      width:100%;
-      align-items:stretch;             /* make rows full width for hover bg */
-    }
+  .btn.compass{ animation:pulse 2.5s infinite; }
+  @keyframes pulse{
+    0%,100%{ transform:scale(1); box-shadow:0 0 0 rgba(0,0,0,0);}
+    50%{ transform:scale(1.04); box-shadow:0 0 18px rgba(0,0,0,.28);}
+  }
 
-    /* Each row is a 2-col grid:
-       [ fixed icon column | label column (0fr→1fr) ] */
-    .sidebar li{
-      display:grid;
-      grid-template-columns: var(--collapsed-w) var(--label-col);
-      align-items:center;
-      padding:.8rem 0;                 /* vertical padding only = true centering */
-      cursor:pointer;
-      transition:background .15s ease, color .15s ease;
-      width:100%;
-    }
+  .instructions{ margin-top:20px; font-size:1rem; color:var(--text); }
+  .incentive{
+    margin:12px auto 6px; padding:12px 14px; max-width:520px;
+    background:linear-gradient(90deg, #fff7ec, #f5e7d4);
+    border:1px solid #e0c9a8; border-radius:10px;
+    color:#5a3e2b; font-weight:700;
+  }
+  .closing-line{ margin-top:10px; font-size:1rem; color:var(--text); font-style:italic; }
 
-    /* =========================
-       Logo
-       ========================= */
-    .logo-item{
-      pointer-events:none;
-      cursor:default;
-      margin-bottom:12px;
-    }
-    .logo-item:hover{ background:none; }
-    .logo-item img{
-      width:var(--logo-size); height:var(--logo-size);
-      filter:none;
-      justify-self:center;             /* keep logo locked in the icon column center */
-      display:block;
-    }
+  .contact-section{
+    margin-top:20px; padding:10px; font-size:0.95rem; color:var(--text);
+  }
+  .contact-section a{ color:var(--text); text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+  .contact-section img{ width:20px; height:20px; }
 
-    /* =========================
-       Icons
-       ========================= */
-    .icon-img{
-      width:var(--icon-size); height:var(--icon-size);
-      filter:invert(1) brightness(200%);
-      transition:filter .15s ease;
-      display:flex; align-items:center; justify-content:center;
-      justify-self:center;             /* center inside the fixed icon column */
-    }
-    .sidebar li:hover .icon-img,
-    .sidebar li.active .icon-img{
-      filter:invert(0) brightness(100%);
-    }
+  .ray-homes-icon{
+    display:inline-block; 
+    background:rgba(193,154,107,0.65); /* More faded beige background */
+    padding:6px; 
+    border-radius:6px;
+    margin-top:8px;
+  }
+  .ray-homes-icon img{ 
+    height:24px; 
+    width:auto; 
+    display:block; 
+  }
 
-    /* =========================
-       Toggle/Menu row
-       ========================= */
-    .menu-icon {
-      font-size:26px;
-      line-height:1;
-      color:var(--txt);          /* default = white */
-      transition:color .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      justify-self:center;       /* align with other icons */
-    }
+  /* Sticky bar for mobile */
+  .sticky-bar{ display:none; }
+  @media (max-width:480px){
+    h1{ font-size:1.7rem; }
+    p.description{ font-size:.95rem; }
+    .btn{ font-size:1rem; padding:14px; width:95%; }
+    .btn img{ height:22px; }
 
-    .toggle-item:hover,
-    .toggle-item.active {
-      background:var(--hl);
+    .sticky-bar{
+      display:flex; position:fixed; bottom:-88px; left:0; width:100%;
+      background:rgba(255,255,255,.96); border-top:1px solid #d8d8d8;
+      justify-content:space-around; padding:8px 0; z-index:999; transition:bottom .3s ease-in-out;
+      backdrop-filter:saturate(1.3) blur(6px);
     }
+    .sticky-bar.show{ bottom:0; }
+    .sticky-bar a{
+      display:flex; flex-direction:column; align-items:center; text-decoration:none; color:#000; font-size:.82rem;
+    }
+    .sticky-bar img{ height:28px; margin-bottom:4px; }
+  }
 
-    .toggle-item:hover .menu-icon,
-    .toggle-item.active .menu-icon {
-      color:var(--txt-inv);      /* black on hover/active */
-    }
-
-    .toggle-item:hover .label,
-    .toggle-item.active .label {
-      color:var(--txt-inv);      /* label flips color too */
-    }
-
-    /* =========================
-       Labels (no layout shift)
-       ========================= */
-    .label{
-      color:var(--txt);
-      white-space:nowrap;
-      overflow:hidden;                 /* hide while column is 0fr */
-      opacity:0;
-      padding-left:0;
-      transition:
-        opacity .25s ease,
-        padding-left .2s ease;
-    }
-    .sidebar.expanded .label{
-      opacity:1;
-      padding-left:1rem;               /* spacing appears only when expanded */
-    }
-
-    /* =========================
-       Row highlight
-       ========================= */
-    .sidebar li:hover,
-    .sidebar li.active{
-      background:var(--hl);
-      color:var(--txt-inv);
-    }
-    .sidebar li:hover .label,
-    .sidebar li.active .label{ color:var(--txt-inv); }
-    .sidebar li.logo-item:hover,
-    .sidebar li.logo-item.active{ background:none; color:var(--txt); }
-
-    /* =========================
-       Panels (fade)
-       ========================= */
-    .panel{
-      position:fixed; top:0; left:var(--collapsed-w);
-      width:calc(100% - var(--collapsed-w));
-      height:100%;
-      background:#fff;
-      opacity:0; visibility:hidden;
-      transition:opacity .45s ease;
-      z-index:200;
-    }
-    .sidebar.expanded ~ .panel{
-      left:var(--expanded-w);
-      width:calc(100% - var(--expanded-w));
-    }
-    .panel.active{ opacity:1; visibility:visible; }
-    .panel iframe{ width:100%; height:100%; border:none; }
-
-    /* =========================
-       Home block (fade)
-       ========================= */
-    .home-content{
-      position:fixed; top:50%; left:50%;
-      transform:translate(-50%, -50%);
-      text-align:center;
-      opacity:1; visibility:visible;
-      transition:opacity .45s ease;
-      z-index:100;
-      pointer-events:none;
-    }
-    .home-content.hidden{ opacity:0; visibility:hidden; }
-    .home-content img{
-      width: min(60vw, 1024px);
-      height:auto; margin-bottom:22px;
-    }
-    .home-content h1{
-      margin:0; font-size:44px; font-weight:700; color:#111;
-    }
-
-    /* =========================
-       Dim overlay
-       ========================= */
-    .dim-overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.4);
-      backdrop-filter: blur(3px);
-      opacity:0; pointer-events:none;
-      transition:opacity .25s ease;
-      z-index:150;
-    }
-    .sidebar.expanded ~ .dim-overlay{ opacity:1; pointer-events:auto; }
-  </style>
+</style>
 </head>
 <body>
-  <div class="page">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="sidebar">
-      <ul>
-        <!-- Logo White -->
-        <li class="logo-item">
-          <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Logo2.png" alt="Logo White"/>
-        </li>
 
-        <!-- Menu Toggle -->
-        <li class="toggle-item" id="menu-btn" onclick="toggleSidebar()">
-          <span class="menu-icon" aria-hidden="true">☰</span>
-          <span class="label">Menu</span>
-        </li>
+<div class="container">
+  <img src="Images/DP.png" alt="Earvin Ray" class="profile">
+  <h1>Earvin Ray</h1>
 
-        <!-- Home -->
-        <li id="home-btn" onclick="openPanel('home')">
-          <img class="icon-img" src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Home.png" alt="Home"/>
-          <span class="label">Home</span>
-        </li>
+  <p class="description">
+    As part of Earvin’s <span class="highlight">Five-Star Client Review Program</span>, we’d love your help in sharing your experience. In return, you’ll receive a <span class="highlight">$25 gift card</span> of your choice:
+  </p>
+  
+<!-- Gift Card Options -->
+<table align="center" style="margin:auto;">
+  <tr>
+    <td style="padding:10px;">
+      <img src="Images/Amazon.png" alt="Amazon" width="80">
+    </td>
+	<td style="padding:10px;">
+      <img src="Images/CrateBarrel.png" alt="CrateBarrel" width="80">
+    </td>
+    <td style="padding:10px;">
+      <img src="Images/HomeDepot.png" alt="Home Depot" width="80">
+    </td>
+	<td style="padding:10px;">
+      <img src="Images/LongHorn.png" alt="LongHorn" width="80">
+    </td>
+    <td style="padding:10px;">
+      <img src="Images/Starbucks.png" alt="Starbucks" width="80">
+    </td>
+  </tr>
+</table>
 
-        <!-- Property Rentals -->
-        <li id="rentals-btn" onclick="openPanel('rentals')">
-          <img class="icon-img" src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Rent.png" alt="Property Rentals"/>
-          <span class="label">Property Rentals</span>
-        </li>
+  <a href="https://zillow.com/reviews/write/?s=X1-ZUv5vxm42s8ykp_6a5jq" class="btn">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Zillow.png" alt="Zillow Logo">
+    Leave a Zillow Review
+  </a>
 
-        <!-- Client Review Program -->
-        <li id="reviews-btn" onclick="openPanel('reviews')">
-          <img class="icon-img" src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Review.png" alt="Client Review Program"/>
-          <span class="label">Client Review Program</span>
-        </li>
+  <a href="https://www.google.com/search?client=safari&sca_esv=65d22011d5166a01&rls=en&sxsrf=AE3TifMwx7jY4t3lpFfZjg0axMmTlaniVw:1764687523225&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E8Ys6Y5RM29vRzrMGp5WdNpri77Qc9260LMVi4Nk8EqA4CGc_e4SiSsml4kf3_ZT5JiEcCjOZAxkJrTc5TEPtQ5CW9HpFl-waStOrIdZ3RdofdrMwg%3D%3D&q=Ray+Homes+-+Compass+Kansas+City+Reviews&sa=X&ved=2ahUKEwiSm9inlZ-RAxVdnWoFHefaFSsQ0bkNegQINhAE&biw=1262&bih=673&dpr=2" class="btn">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Google.png" alt="Google Logo">
+    Leave a Google Review
+  </a>
 
-        <!-- Book a Tour -->
-        <li id="tour-btn" onclick="openPanel('tour')">
-          <img class="icon-img" src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Book.png" alt="Book a Tour"/>
-          <span class="label">Book a Tour</span>
-        </li>
-      </ul>
-    </nav>
+<!-- Collapsible Instructions Section -->
+<section style="margin:30px auto; max-width:700px; font-family: Inter, sans-serif; text-align:center;">
 
-    <!-- Overlay -->
-    <div class="dim-overlay" onclick="toggleSidebar(false)"></div>
+  <details style="display:inline-block; text-align:left;">
+    <summary style="cursor:pointer; font-size:0.95rem; color:#444; background:#f2f2f2; border:1px solid #ddd; border-radius:5px; padding:6px 12px; display:inline-block;">
+      📋 Instructions
+    </summary>
+    
+    <div style="margin-top:12px; padding:15px; background:#fdfdfd; border:1px solid #eee; border-radius:8px; line-height:1.6; font-size:0.95rem;">
+      <p><strong>Zillow:</strong><br>
+      • Log in to your Zillow account.<br>
+      • Click the Zillow review button above.<br>
+      • Write and submit your review.</p>
 
-    <!-- Home Content -->
-    <section id="home-content" class="home-content">
-      <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/APRE/refs/heads/main/images/Logo.png" alt="Logo Large"/>
-      <h1>Coming Soon!</h1>
-    </section>
+      <p><strong>Google:</strong><br>
+      • Click the Google review button above to open Earvin’s Compass Realty Group profile.<br>
+      • Select “Write a Review.”<br>
+      • Share your experience and submit.</p>
 
-    <!-- Panels -->
-    <section id="rentals" class="panel">
-      <iframe src="https://app.rentredi.com/listingDetails/NuczMAXbb3W1sZxAnSCsGehPcXx1" title="Property Rentals"></iframe>
-    </section>
+      <p style="margin-top:15px; font-weight:bold; text-align:center; font-size:1rem;">
+        💵 Once finished, reply to the email you received and let us know which $25 gift card you’d like:
+        Amazon, Home Depot, Starbucks, or LongHorn Steakhouse.
+      </p>
+    </div>
+  </details>
+  
+</section>
 
-    <section id="reviews" class="panel">
-      <iframe src="https://apclientreview.netlify.app/" title="Client Review Program"></iframe>
-    </section>
 
-    <section id="tour" class="panel">
-      <iframe src="https://calendly.com/ashley-ellavalleyhomes" title="Book a Tour"></iframe>
-    </section>
+  <p class="instructions"><strong>Please write one review and copy it to all three platforms above.</strong></p>
+
+    <p class="description">
+
+  </p>
+
+   <div class="reviews">
+      <strong>Here are a few reviews from previous clients to inspire yours:</strong>
+
+      <p>“Earvin was amazing to work with. This was our first home purchase and Earvin eased the nerves with his knowledge of real estate. He understands what your looking for and will help you find the best house for the best price!”<br>
+      <span class="review-author">— Alex R.</span></p>
+
+      <p>“Earvin was great! He was ready to answer any questions I had right away. Anytime I asked, he either knew the answer or got back to me within a few minutes...”<br>
+      <span class="review-author">— Peggy M.</span></p>
+
+      <p>“The Best Real Estate Experience We've Ever Had! Having purchased about ten properties over the years, my wife and I can confidently say this was the smoothest, most professional process we've ever experienced with Earvin. He was always responsive, on time, courteous, knowledgeable, and refreshingly honest – a rare mix in today’s fast-paced market!”<br>
+      <span class="review-author">— Pace J.</span></p>
+    </div>
+
+  <p class="incentive">Complete your reviews and receive <strong>$25 in gift cards</strong> of your choice 💵 — our way of saying thank you for your honest feedback.</p>
+
+  <p class="closing-line"><strong>It has been a blessing to represent you, and I truly appreciate you trusting me to be part of your journey.</strong></p>
+
+  <!-- Compass button -->
+  <a href="https://www.compass.com/agents/earvin-ray/" class="btn black-btn compass" aria-label="Visit Earvin Ray on Compass">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Compass%202.png" alt="Compass Logo">
+  </a>
+
+  <!-- Contact info -->
+  <div class="contact-section">
+    <a href="mailto:earvin.ray@compass.com">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email Icon">
+      earvin.ray@compass.com
+    </a>
   </div>
 
-  <script>
-    let currentPanel = null;
-    let currentBtn = null;
+  <!-- Ray Homes small icon -->
+  <div>
+    <a href="https://rayhomeskc.com/" class="ray-homes-icon" aria-label="Visit Ray Homes">
+      <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Ray%20Homes.png" alt="Ray Homes Logo">
+    </a>
+  </div>
+</div>
 
-    function toggleSidebar(forceState){
-      const sidebar = document.getElementById('sidebar');
-      if (typeof forceState === 'boolean'){
-        sidebar.classList.toggle('expanded', forceState);
-      } else {
-        sidebar.classList.toggle('expanded');
-      }
-    }
+<!-- Sticky bar for mobile -->
+<div class="sticky-bar" id="sticky-bar">
+  <a href="https://zillow.com/reviews/write/?s=X1-ZU14gyf3xbeird5_1pt0h">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Zillow.png" alt="Zillow">Zillow
+  </a>
+  <a href="https://share.google/eHXIxe1mzX4HUGD5H">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Google.png" alt="Google">Google
+  </a>
+  <a href="https://www.facebook.com/share/177efWy5gB/?mibextid=wwXIfr">
+    <img src="https://raw.githubusercontent.com/michaellouis-cyberbacker/AshleyPeters/refs/heads/Images/Facebook.png" alt="Facebook">Facebook
+  </a>
+</div>
 
-    function openPanel(id){
-      const home = document.getElementById('home-content');
+<script>
+  const sampleReview = document.getElementById('sample-review');
+  const stickyBar = document.getElementById('sticky-bar');
 
-      if (id === 'home'){
-        if (currentPanel){
-          document.getElementById(currentPanel).classList.remove('active');
-          currentPanel = null;
-        }
-        if (currentBtn){
-          currentBtn.classList.remove('active');
-          currentBtn = null;
-        }
-        home.classList.remove('hidden');
-        return;
-      }
+  function toggleSticky(){
+    const rect = sampleReview.getBoundingClientRect();
+    if(rect.top < -50){ stickyBar.classList.add('show'); }
+    else{ stickyBar.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', toggleSticky, { passive: true });
+  document.addEventListener('DOMContentLoaded', toggleSticky);
+</script>
 
-      home.classList.add('hidden');
-
-      if (currentBtn){ currentBtn.classList.remove('active'); }
-      const btn = document.getElementById(id + '-btn');
-      if (btn){ btn.classList.add('active'); currentBtn = btn; }
-
-      if (currentPanel && currentPanel !== id){
-        document.getElementById(currentPanel).classList.remove('active');
-        setTimeout(() => {
-          document.getElementById(id).classList.add('active');
-          currentPanel = id;
-        }, 250);
-      } else {
-        document.getElementById(id).classList.add('active');
-        currentPanel = id;
-      }
-    }
-  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
